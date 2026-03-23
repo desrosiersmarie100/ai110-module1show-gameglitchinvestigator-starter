@@ -1,38 +1,30 @@
-# 🎮 Game Glitch Investigator: The Impossible Guesser
+# 🎮 Game Glitch Investigator
 
-## 🚨 The Situation
+## Project Overview
+This project involved debugging and repairing an AI-generated number guessing game built with Streamlit. The original version had several logic and state issues that made the game unreliable. The goal was to identify the bugs, fix them, refactor the game logic into helper functions, and verify the repairs with pytest.
 
-You asked an AI to build a simple "Number Guessing Game" using Streamlit.
-It wrote the code, ran away, and now the game is unplayable. 
+## Bugs Found
+- The game logic was mixed directly into `app.py`, which made it harder to test.
+- The hint logic was incorrect in the original version.
+- Input handling was unreliable for blank input, decimals, and non-numeric values.
+- Score updates were inconsistent.
+- Streamlit session state needed to be handled correctly so the game would behave consistently.
 
-- You can't win.
-- The hints lie to you.
-- The secret number seems to have commitment issues.
+## Fixes Applied
+- Refactored helper functions into `logic_utils.py`
+- Fixed guess checking so the hints match the actual secret number
+- Improved input validation for blank, decimal, and invalid entries
+- Corrected score calculation logic
+- Used `st.session_state` to properly manage attempts, score, history, difficulty, and game status
 
-## 🛠️ Setup
+## Files
+- `app.py` — Streamlit interface and main game flow
+- `logic_utils.py` — helper functions for difficulty, parsing, guess checking, and scoring
+- `tests/test_game_logic.py` — pytest tests for game logic
+- `reflection.md` — project reflection
 
-1. Install dependencies: `pip install -r requirements.txt`
-2. Run the broken app: `python -m streamlit run app.py`
+## How to Run
+Install dependencies:
 
-## 🕵️‍♂️ Your Mission
-
-1. **Play the game.** Open the "Developer Debug Info" tab in the app to see the secret number. Try to win.
-2. **Find the State Bug.** Why does the secret number change every time you click "Submit"? Ask ChatGPT: *"How do I keep a variable from resetting in Streamlit when I click a button?"*
-3. **Fix the Logic.** The hints ("Higher/Lower") are wrong. Fix them.
-4. **Refactor & Test.** - Move the logic into `logic_utils.py`.
-   - Run `pytest` in your terminal.
-   - Keep fixing until all tests pass!
-
-## 📝 Document Your Experience
-
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
-
-## 📸 Demo
-
-- [ ] [Insert a screenshot of your fixed, winning game here]
-
-## 🚀 Stretch Features
-
-- [ ] [If you choose to complete Challenge 4, insert a screenshot of your Enhanced Game UI here]
+```bash
+pip install -r requirements.txt
